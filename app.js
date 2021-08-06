@@ -36,13 +36,13 @@ app.post('/api/products', (req, res, next) => {
 
 app.get('/api/products', (req, res, next) => { // URL Visée par l'application (uniquement l'extension et pas l'URL totale)
     Product.find() // Get sur la totalité des products
-    .then(products => res.status(200).json(products)) // find retourne une Promise
+    .then(products => res.status(200).json({ products })) // find retourne une Promise
     .catch(error => res.status(400).json({ error }));
 });
 
 app.get('/api/products/:id', (req, res, next) => {
     Product.findOne({ _id: req.params.id }) // get sur un seul produit
-    .then(product => res.status(200).json(product)) // nouvelle Promise
+    .then(product => res.status(200).json({ product })) // nouvelle Promise
     .catch(error => res.status(404).json({ error }));
 });
 
